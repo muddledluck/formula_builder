@@ -16,6 +16,8 @@ const allowed = [
   "8",
   "9",
   "0",
+  "(",
+  ")",
 ];
 
 export default class Node extends Component {

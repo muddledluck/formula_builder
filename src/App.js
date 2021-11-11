@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import "./App.css";
-import Node from "./component/node.component";
+import AddMaterial from "./component/material.compnent";
 
 class App extends Component {
   constructor() {
@@ -11,13 +11,21 @@ class App extends Component {
         title: "Demontiaon and prep",
         value: "jfkd",
       },
+      isAddingMaterial: false,
     };
   }
+  handleAddMaterail = (e) => {
+    e.preventDefault();
+    this.setState({ isAddingMaterail: !this.state.isAddingMaterial });
+  };
+
   render() {
     return (
       <div className="App">
-        <h1>Tree</h1>
-        <Node obj={this.state.obj} />
+        {/* <button onClick={this.handleAddMaterail}>
+          {isAddingMaterail ? "Cancle Materail Add" : "Add Materail"}
+        </button> */}
+        <AddMaterial />
       </div>
     );
   }
