@@ -1,19 +1,23 @@
 import React, { Component } from "react";
-import { nanoid } from "nanoid";
 import "./material.css";
 import { validateArthmaticString } from "../utils/validator";
+import { Link } from "react-router-dom";
+
+const randomId = () => {
+  return (Date.now() * Math.floor(Math.random() * 1000000)).toString();
+};
 export default class AddMaterial extends Component {
   constructor(props) {
     super(props);
     this.state = {
       materails: [
         {
-          id: nanoid(),
+          id: randomId(),
           name: "m1",
           value: 10,
         },
         {
-          id: nanoid(),
+          id: randomId(),
           name: "m2",
           value: 32,
         },
@@ -23,12 +27,12 @@ export default class AddMaterial extends Component {
       estimation: [],
       userInput: [
         {
-          id: nanoid(),
+          id: randomId(),
           name: "u1",
           value: null,
         },
         {
-          id: nanoid(),
+          id: randomId(),
           name: "u2",
           value: null,
         },
@@ -77,7 +81,7 @@ export default class AddMaterial extends Component {
       userInput: [
         ...this.state.userInput,
         {
-          id: nanoid(),
+          id: randomId(),
           name: this.state.newUserInput,
           value: null,
         },
@@ -97,11 +101,10 @@ export default class AddMaterial extends Component {
     if (!this.state.newMaterial.name) {
       return;
     }
-    const id = nanoid();
+    const id = randomId();
     const newMaterial = { ...this.state.newMaterial };
     newMaterial.id = id;
     const materails = [...this.state.materails, newMaterial];
-    console.log("materails: ", materails);
     this.setState({ materails, newMaterial: {} });
   };
 
@@ -208,6 +211,7 @@ export default class AddMaterial extends Component {
             name: elem.name,
             type: "materails",
             value: elem.value,
+            id: elem.id,
           });
         } else if (serviceValue[i].startsWith("###")) {
           const val = serviceValue[i].replace("###", "");
@@ -220,6 +224,7 @@ export default class AddMaterial extends Component {
             name: elem.name,
             type: "userInput",
             value: elem.value,
+            id: elem.id,
           });
         } else if (serviceValue[i].startsWith("***")) {
           const val = serviceValue[i].replace("***", "");
@@ -243,10 +248,11 @@ export default class AddMaterial extends Component {
       let isValid = validateArthmaticString(tempFormula);
       if (e && isValid.validate) {
         const newService = { ...this.state.newService };
-        newService.id = nanoid();
+        newService.id = randomId();
         newService.value = formula;
         newService.formula = tempFormula;
         newService.dependsOn = dependsOn;
+        console.log({ newService });
         this.setState({
           services: [...this.state.services, newService],
           newService: {
@@ -261,7 +267,6 @@ export default class AddMaterial extends Component {
           tempServiceToShow: "",
         });
       }
-      console.log(isValid, tempFormula);
       if (!isValid.validate) {
         this.setState({ error: true });
       } else {
@@ -415,6 +420,18 @@ export default class AddMaterial extends Component {
             </select>
           </div>
         </div>
+        <Link
+          to={{
+            pathname: "/cacluate-formula",
+            state: {
+              formula: this.state.services,
+              materails: this.state.materails,
+              userInput: this.state.userInput,
+            },
+          }}
+        >
+          Caculate Formula
+        </Link>
       </div>
     );
   }
