@@ -10,6 +10,7 @@ export default class AddMaterial extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      materailsCatagory: [],
       materails: [
         {
           id: randomId(),
@@ -127,6 +128,7 @@ export default class AddMaterial extends Component {
       case "materail":
         return (
           <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
             {this.state.materails.map((materail) => {
               return (
                 <option value={"@@@" + materail.id} key={materail.id}>
@@ -140,6 +142,7 @@ export default class AddMaterial extends Component {
         return (
           <select onChange={(e) => this.handleServiceChange(e, idx)}>
             {this.state.userInput.map((user) => {
+              <option>Select</option>;
               return (
                 <option value={"###" + user.id} key={user.id}>
                   {user.name} ={user.value}
@@ -151,6 +154,7 @@ export default class AddMaterial extends Component {
       case "arthmatic":
         return (
           <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
             {["+", "-", "/", "*"].map((opertaion) => {
               return <option value={opertaion}>{opertaion}</option>;
             })}
@@ -167,6 +171,7 @@ export default class AddMaterial extends Component {
       case "breaket":
         return (
           <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
             {["(", ")"].map((breaket) => {
               return <option value={breaket}>{breaket}</option>;
             })}
@@ -175,6 +180,7 @@ export default class AddMaterial extends Component {
       case "service":
         return (
           <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
             {this.state.services.map((service) => {
               return (
                 <option value={"***" + service.id}>
@@ -386,6 +392,7 @@ export default class AddMaterial extends Component {
                       this.setState({ serviceTempArray: newServ });
                     }}
                   >
+                    <option>Select</option>
                     <option value="materail">materail</option>
                     <option value="userInput">userInput</option>
                     <option value="arthmatic">arthmatic</option>
