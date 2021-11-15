@@ -194,6 +194,7 @@ export default class Caculate extends Component {
         <span onClick={() => this.props.history.goBack()}>GO BACK</span>
         <h1>Caculate</h1>
         <select onChange={this.handleCaculateSelection}>
+          <option>select</option>
           {this.state.formula.map((item, idx) => {
             return (
               <option key={idx} value={item.id}>

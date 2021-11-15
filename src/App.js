@@ -4,7 +4,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Caculate from "./component/caculate.component";
 import AddMaterial from "./component/material.compnent";
-import NewMaterial from "./component/newMaterial.component";
+import NewMaterial from "./component/v2/newMaterial.component";
+import NewSerice from "./component/v2/newSerivice.component";
 
 class App extends Component {
   constructor() {
@@ -28,6 +29,7 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route path="/" exact component={NewMaterial} />
+            <Route path="/new-serivce" exact component={NewSerice} />
             <Route path="/material" exact component={AddMaterial} />
             <Route path="/cacluate-formula" exact component={Caculate} />
           </Switch>
