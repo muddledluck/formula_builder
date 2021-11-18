@@ -58,12 +58,13 @@ export default class Tree extends Component {
                         <Tree formula={formula} {...this.props} />
                       ) : (
                         <a href="#">
-                          {/* <a href="#">{formula.name}</a> */}
+                          <label htmlFor="title-input">Title</label>
                           <input
                             value={formula.name}
                             onChange={(e) =>
                               this.props.handleTitleChange(e, formula.id)
                             }
+                            id="title-input"
                           />
                           <span
                             onClick={() => this.props.handleSelectNode(formula)}

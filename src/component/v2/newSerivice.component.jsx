@@ -122,7 +122,6 @@ export default class NewSerice extends Component {
   };
 
   handleSelectNode = (node) => {
-    console.log("noe: ", node);
     this.setState({ selectedNode: node });
   };
 
@@ -144,6 +143,7 @@ export default class NewSerice extends Component {
             </div>
             <div>
               <label htmlFor="service-input">Depends on</label>
+
               <input
                 id="service-input"
                 onChange={(e) => {
@@ -176,6 +176,78 @@ export default class NewSerice extends Component {
     definingNode.formula = definingNode.formula + value;
     console.log("value: ", value, definingNode);
     this.setState({ definingNode });
+  };
+
+  handleServiceToShow = (serviceType, idx) => {
+    switch (serviceType) {
+      case "materail":
+        return (
+          <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
+            {this.state.materails.map((materail) => {
+              return (
+                <option value={"@@@" + materail.id} key={materail.id}>
+                  {materail.name} ={materail.value}
+                </option>
+              );
+            })}
+          </select>
+        );
+      case "userInput":
+        return (
+          <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            {this.state.userInput.map((user) => {
+              <option>Select</option>;
+              return (
+                <option value={"###" + user.id} key={user.id}>
+                  {user.name} ={user.value}
+                </option>
+              );
+            })}
+          </select>
+        );
+      case "arthmatic":
+        return (
+          <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
+            {["+", "-", "/", "*"].map((opertaion) => {
+              return <option value={opertaion}>{opertaion}</option>;
+            })}
+          </select>
+        );
+      case "number":
+        return (
+          <input
+            type="number"
+            placeholder="number"
+            onChange={(e) => this.handleServiceChange(e, idx)}
+          />
+        );
+      case "breaket":
+        return (
+          <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
+            {["(", ")"].map((breaket) => {
+              return <option value={breaket}>{breaket}</option>;
+            })}
+          </select>
+        );
+      case "service":
+        return (
+          <select onChange={(e) => this.handleServiceChange(e, idx)}>
+            <option>Select</option>
+            {this.state.services.map((service) => {
+              return (
+                <option value={"***" + service.id}>
+                  {service.name} = {service.formula}
+                </option>
+              );
+            })}
+          </select>
+        );
+      default:
+        return "";
+    }
   };
 
   render() {

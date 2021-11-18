@@ -40,45 +40,49 @@ export default class NewMaterial extends Component {
           unit: "",
           cost: "",
           materialId: 1636975762915,
+          id: Date.now() + Math.floor(Math.random() * 100000),
         },
         {
           name: "m1",
           unit: "sqrt",
           cost: "154555",
           materialId: 1636975734369,
+          id: Date.now() + Math.floor(Math.random() * 100000),
         },
         {
           name: "m12",
           unit: "m",
           cost: "154555432",
           materialId: 1636975789368,
+          id: Date.now() + Math.floor(Math.random() * 100000),
         },
         {
           name: "m13",
           unit: "feet",
           cost: "456",
           materialId: 1636975789368,
+          id: Date.now() + Math.floor(Math.random() * 100000),
         },
         {
           name: "m14",
           unit: "ton",
           cost: "78",
           materialId: 1636975789368,
+          id: Date.now() + Math.floor(Math.random() * 100000),
         },
         {
           name: "m15",
           unit: "sqrt",
           cost: "7895",
           materialId: 1636975789368,
+          id: Date.now() + Math.floor(Math.random() * 100000),
         },
       ],
     });
   };
 
   findAllVariationByMaterialID = (materialId) => {
-    console.log("materailId: ", materialId);
     const variationList = this.state.variation.filter((variation) => {
-      console.log(variation, materialId, variation.materialId === materialId);
       return variation.materialId.toString() === materialId.toString();
     });
     return variationList;
@@ -92,6 +96,7 @@ export default class NewMaterial extends Component {
     };
     const newVariation = [...this.state.newMaterialVarient].map((variation) => {
       variation.materialId = newMaterial.id;
+      variation.id = Date.now() + Math.floor(Math.random() * 100000);
       return variation;
     });
     this.setState({
