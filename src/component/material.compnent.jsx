@@ -190,6 +190,10 @@ export default class AddMaterial extends Component {
             })}
           </select>
         );
+      case "unit":
+        return <input />;
+      case "quentity":
+        return <input />;
       default:
         return "";
     }
@@ -362,15 +366,6 @@ export default class AddMaterial extends Component {
         <div>
           <h4>Service</h4>
           <div>
-            {/* <select
-              onChange={(e) => this.setState({ serviceType: e.target.value })}
-            >
-              <option value="materail">materail</option>
-              <option value="userInput">userInput</option>
-              <option value="arthmatic">arthmatic</option>
-              <option value="number">number</option>
-              <option value="breaket">breaket</option>
-            </select> */}
             <input
               type="text"
               placeholder="title"

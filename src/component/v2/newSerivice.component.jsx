@@ -22,6 +22,7 @@ export default class NewSerice extends Component {
       },
       selectedNode: null, // selected node for defination,
       definingNodeService: "",
+      formulaElementTempArray: [], // add element in formula
     };
   }
   componentDidMount() {
@@ -143,21 +144,15 @@ export default class NewSerice extends Component {
             </div>
             <div>
               <label htmlFor="service-input">Depends on</label>
-
-              <input
-                id="service-input"
-                onChange={(e) => {
-                  this.setState({ definingNodeService: e.target.value });
-                }}
-              />
-              <label
-                htmlFor="service-input"
-                onClick={() =>
-                  this.handleUpdateNewFormula(this.state.definingNodeService)
-                }
-              >
-                Add
-              </label>
+              {this.state.formulaElementTempArray.map((element, idx) => {
+                return (
+                  <>
+                    {this.handleServiceToShow(
+                      this.state.formulaElementTempArray[idx]
+                    )}
+                  </>
+                );
+              })}
             </div>
             <button onClick={this.handleAddFormula}>Add Formula</button>
           </div>
